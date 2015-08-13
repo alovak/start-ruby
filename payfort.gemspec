@@ -1,15 +1,15 @@
 $:.unshift(File.join(File.dirname(__FILE__), 'lib'))
 
-require 'white/version'
+require 'payfort/version'
 
 spec = Gem::Specification.new do |s|
-  s.name = 'white_payments'
-  s.version = White::VERSION
-  s.summary = 'Ruby bindings for the White API'
-  s.description = 'White is the easiest way to accept payments online in the middle east. See https://whitepayments.com for details.'
-  s.authors = ['Yazin Alirhayim']
-  s.email = ['yazin@whitepayments.com']
-  s.homepage = 'https://whitepayments.com/docs/'
+  s.name = 'payfort'
+  s.version = Payfort::VERSION
+  s.summary = 'Ruby bindings for the Payfort Start API'
+  s.description = 'Payfort Start is the easiest way to accept payments online in the middle east. See https://start.payfort.com for details.'
+  s.authors = ['Pavel Gabriel','Yazin Alirhayim']
+  s.email = ['pavel@payfort.com','yazin@payfort.com']
+  s.homepage = 'https://start.payfort.com/docs/'
   s.license = 'MIT'
 
   s.add_dependency('httparty', '~> 0.13')

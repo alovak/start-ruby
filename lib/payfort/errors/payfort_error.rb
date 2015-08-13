@@ -1,5 +1,5 @@
-module White
-  class WhiteError < StandardError
+module Payfort
+  class PayfortError < StandardError
     attr_reader :message
     attr_reader :code
     attr_reader :http_status

@@ -7,7 +7,7 @@ White makes accepting payments in the Middle East ridiculously easy. Sign up for
 Using White with your Ruby project is simple. If you're using [bundler](http://bundler.io) (and really, who isn't these days amirite?), you just need to add one line to your `Gemfile`:
 
 ```ruby
-gem 'white_payments', require: 'white'
+gem 'payfort', require: 'payfort'
 ```
 
 Now, running `bundle install` will pull the library directly to your local project.
@@ -23,12 +23,12 @@ Got an account? Great .. let's get busy.
 To get started, you'll need to initialize White with your secret API key. Here's how that looks (we're using a test key, so no real money will be exchanging hands):
 
 ```ruby
-require 'white'
+require 'payfort'
 
-White.api_key = "test_sec_k_25dd497d7e657bb761ad6"
+Payfort.api_key = "test_sec_k_25dd497d7e657bb761ad6"
 ```
 
-That's it! You probably want to do something with the White object though -- it gets really bored when it doesn't have anything to do. 
+That's it! You probably want to do something with the White object though -- it gets really bored when it doesn't have anything to do.
 
 Let's run a transaction, shall we.
 
@@ -62,13 +62,13 @@ Any errors that may occur during a transaction is raised as an Exception. Here's
 ```ruby
 begin
   # Use White's bindings...
-  
+
 rescue White::BankingError => e
   # Since it's a decline, White::BankingError will be caught
   puts "Status is: #{e.http_status}"
   puts "Code is: #{e.code}"
   puts "Message is: #{e.message}"
-  
+
 rescue White::RequestError => e
   # Invalid parameters were supplied to White's API
 
@@ -77,11 +77,11 @@ rescue White::AuthenticationError => e
 
 rescue White::ProcessingError => e
   # There's something wrong on White's end
-  
+
 rescue White::WhiteError => e
   # Display a very generic error to the user, and maybe send
   # yourself an email
-  
+
 rescue => e
   # Something else happened, completely unrelated to White
 end

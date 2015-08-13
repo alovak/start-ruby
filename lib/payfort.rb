@@ -1,17 +1,17 @@
 require "httparty"
-require "white/customer"
-require "white/charge"
-require "white/errors/white_error"
-require "white/errors/authentication_error"
-require "white/errors/banking_error"
-require "white/errors/request_error"
-require "white/errors/processing_error"
+require "payfort/customer"
+require "payfort/charge"
+require "payfort/errors/payfort_error"
+require "payfort/errors/authentication_error"
+require "payfort/errors/banking_error"
+require "payfort/errors/request_error"
+require "payfort/errors/processing_error"
 
-module White
-  
+module Payfort
+
   include HTTParty
 
-  @api_base = 'https://api.whitepayments.com/'
+  @api_base = 'https://api.start.payfort.com/'
 
   def self.api_url(url='')
     @api_base + url
@@ -28,20 +28,20 @@ module White
     # There was an error .. check the response
     case body['error']['type']
     when 'banking'
-      raise White::BankingError.new(body['error']['message'], body['error']['code'], response.code)
+      raise Payfort::BankingError.new(body['error']['message'], body['error']['code'], response.code)
 
     when 'authentication'
-      raise White::AuthenticationError.new(body['error']['message'], body['error']['code'], response.code)
+      raise Payfort::AuthenticationError.new(body['error']['message'], body['error']['code'], response.code)
 
     when 'processing'
-      raise White::ProcessingError.new(body['error']['message'], body['error']['code'], response.code)
+      raise Payfort::ProcessingError.new(body['error']['message'], body['error']['code'], response.code)
 
     when 'request'
-      raise White::RequestError.new(body['error']['message'], body['error']['code'], response.code)
+      raise Payfort::RequestError.new(body['error']['message'], body['error']['code'], response.code)
     end
 
     # Otherwise, raise a General error
-    raise White::WhiteError.new(body['error']['message'], body['error']['code'], response.code)
+    raise Payfort::PayfortError.new(body['error']['message'], body['error']['code'], response.code)
   end
 
   def self.post(url, body={})
