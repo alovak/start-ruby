@@ -1,14 +1,14 @@
 require_relative '../../../spec_helper'
 
-describe White::WhiteError do
+describe Start::StartError do
   
   # Add a test case for a "General Error" -- TODO
   #
   # it "must be thown" do
-  #   White.api_key = "sk_test_1234567890abcdefghijklmnopq"
+  #   Start.api_key = "sk_test_1234567890abcdefghijklmnopq"
 
   #   lambda {
-  #     response = White::Charge.create(
+  #     response = Start::Charge.create(
   #       :amount => 400,
   #       :currency => "usd",
   #       :card => {
@@ -19,6 +19,6 @@ describe White::WhiteError do
   #       },
   #       :description => "Charge for test@example.com"
   #     )
-  #   }.must_raise White::WhiteError
+  #   }.must_raise Start::StartError
   # end
 end

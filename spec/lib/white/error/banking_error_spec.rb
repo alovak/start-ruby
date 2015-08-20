@@ -1,12 +1,12 @@
 require_relative '../../../spec_helper'
 
-describe White::BankingError do
+describe Start::BankingError do
  
   it "must be thown with card_declined" do
-    White.api_key = "test_sec_k_25dd497d7e657bb761ad6"
+    Start.api_key = "test_sec_k_25dd497d7e657bb761ad6"
 
     begin
-      response = White::Charge.create(
+      response = Start::Charge.create(
         :amount => 400,
         :currency => "usd",
         :email => "abdullah@msn.com",
@@ -19,7 +19,7 @@ describe White::BankingError do
         },
         :description => "Charge for test@example.com"
       )
-    rescue White::BankingError => e
+    rescue Start::BankingError => e
       e.code.must_equal 'card_declined'
       e.http_status.must_equal 402
     end

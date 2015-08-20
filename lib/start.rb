@@ -1,13 +1,13 @@
 require "httparty"
-require "payfort/customer"
-require "payfort/charge"
-require "payfort/errors/payfort_error"
-require "payfort/errors/authentication_error"
-require "payfort/errors/banking_error"
-require "payfort/errors/request_error"
-require "payfort/errors/processing_error"
+require "start/customer"
+require "start/charge"
+require "start/errors/payfort_error"
+require "start/errors/authentication_error"
+require "start/errors/banking_error"
+require "start/errors/request_error"
+require "start/errors/processing_error"
 
-module Payfort
+module Start
 
   include HTTParty
 
@@ -28,20 +28,20 @@ module Payfort
     # There was an error .. check the response
     case body['error']['type']
     when 'banking'
-      raise Payfort::BankingError.new(body['error']['message'], body['error']['code'], response.code)
+      raise Start::BankingError.new(body['error']['message'], body['error']['code'], response.code)
 
     when 'authentication'
-      raise Payfort::AuthenticationError.new(body['error']['message'], body['error']['code'], response.code)
+      raise Start::AuthenticationError.new(body['error']['message'], body['error']['code'], response.code)
 
     when 'processing'
-      raise Payfort::ProcessingError.new(body['error']['message'], body['error']['code'], response.code)
+      raise Start::ProcessingError.new(body['error']['message'], body['error']['code'], response.code)
 
     when 'request'
-      raise Payfort::RequestError.new(body['error']['message'], body['error']['code'], response.code)
+      raise Start::RequestError.new(body['error']['message'], body['error']['code'], response.code)
     end
 
     # Otherwise, raise a General error
-    raise Payfort::PayfortError.new(body['error']['message'], body['error']['code'], response.code)
+    raise Start::StartError.new(body['error']['message'], body['error']['code'], response.code)
   end
 
   def self.post(url, body={})

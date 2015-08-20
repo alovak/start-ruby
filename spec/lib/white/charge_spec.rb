@@ -1,11 +1,11 @@
 require_relative '../../spec_helper'
  
-describe White::Charge do
+describe Start::Charge do
  
   it "must create a new charge" do
-    White.api_key = "test_sec_k_25dd497d7e657bb761ad6"
+    Start.api_key = "test_sec_k_25dd497d7e657bb761ad6"
 
-    response = White::Charge.create(
+    response = Start::Charge.create(
       :amount => 400,
       :currency => "usd",
       :email => "ahmed@example.com",
@@ -23,7 +23,7 @@ describe White::Charge do
   end
 
    it "must list created charges" do
-    response = White::Charge.all()
+    response = Start::Charge.all()
     response.wont_be_empty
    end
  

@@ -1,12 +1,12 @@
 require_relative '../../spec_helper'
 # require_relative '../../../lib/white/customer'
  
-describe White::Customer do
+describe Start::Customer do
  
   it "must create a new customer" do
-    White.api_key = "test_sec_k_25dd497d7e657bb761ad6"
+    Start.api_key = "test_sec_k_25dd497d7e657bb761ad6"
 
-    response = White::Customer.create(
+    response = Start::Customer.create(
       :name => "Abdullah Ahmed",
       :email => "abdullah@msn.com",
       :card => {
@@ -22,7 +22,7 @@ describe White::Customer do
   end
 
    it "must list created customers" do
-    response = White::Customer.all()
+    response = Start::Customer.all()
     response.wont_be_empty
    end
  

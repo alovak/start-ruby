@@ -1,5 +1,5 @@
-module Payfort
-  class PayfortError < StandardError
+module Start
+  class StartError < StandardError
     attr_reader :message
     attr_reader :code
     attr_reader :http_status

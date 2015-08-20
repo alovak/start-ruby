@@ -1,12 +1,12 @@
 require_relative '../../../spec_helper'
 
-describe White::AuthenticationError do
+describe Start::AuthenticationError do
   
   it "must be thown with an invalid key" do
-    White.api_key = "invalid"
+    Start.api_key = "invalid"
 
     lambda {
-      response = White::Charge.create(
+      response = Start::Charge.create(
         :amount => 400,
         :currency => "usd",
         :card => {
@@ -17,6 +17,6 @@ describe White::AuthenticationError do
         },
         :description => "Charge for test@example.com"
       )
-    }.must_raise White::AuthenticationError
+    }.must_raise Start::AuthenticationError
   end
 end

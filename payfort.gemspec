@@ -4,7 +4,7 @@ require 'payfort/version'
 
 spec = Gem::Specification.new do |s|
   s.name = 'payfort'
-  s.version = Payfort::VERSION
+  s.version = Start::VERSION
   s.summary = 'Ruby bindings for the Payfort Start API'
   s.description = 'Payfort Start is the easiest way to accept payments online in the middle east. See https://start.payfort.com for details.'
   s.authors = ['Pavel Gabriel','Yazin Alirhayim']

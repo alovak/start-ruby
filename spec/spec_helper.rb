@@ -1,5 +1,5 @@
 #we need the actual library file
-require_relative '../lib/white'
+require_relative '../lib/start'
 # For Ruby < 1.9.3, use this instead of require_relative
 # require(File.expand_path('../../lib/dish', __FILE__))
  

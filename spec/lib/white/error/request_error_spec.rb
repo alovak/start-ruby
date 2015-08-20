@@ -1,14 +1,14 @@
 require_relative '../../../spec_helper'
 
-describe White::RequestError do
+describe Start::RequestError do
 
   # Negative amounts don't raise an error -- TODO: FIX
   #  
   # it "must be thown with invalid_request_error" do
-  #   White.api_key = "test_sec_k_25dd497d7e657bb761ad6"
+  #   Start.api_key = "test_sec_k_25dd497d7e657bb761ad6"
 
   #   lambda {
-  #     response = White::Charge.create(
+  #     response = Start::Charge.create(
   #       :amount => -1,
   #       :currency => "usd",
   #       :card => {
@@ -19,14 +19,14 @@ describe White::RequestError do
   #       },
   #       :description => "Charge for test@example.com"
   #     )
-  #   }.must_raise White::RequestError
+  #   }.must_raise Start::RequestError
   # end
 
   it "must be thrown with invalid_cvc" do
-    White.api_key = "test_sec_k_25dd497d7e657bb761ad6"
+    Start.api_key = "test_sec_k_25dd497d7e657bb761ad6"
 
     begin
-      response = White::Charge.create(
+      response = Start::Charge.create(
         :amount => 400,
         :currency => "usd",
         :card => {
@@ -37,17 +37,17 @@ describe White::RequestError do
         },
         :description => "Charge for test@example.com"
       )
-    rescue White::RequestError => e
+    rescue Start::RequestError => e
       e.code.must_equal 'unprocessable_entity'
       e.http_status.must_equal 422
     end
   end
 
   it "must be thown with expired_card" do
-    White.api_key = "test_sec_k_25dd497d7e657bb761ad6"
+    Start.api_key = "test_sec_k_25dd497d7e657bb761ad6"
 
     begin
-      response = White::Charge.create(
+      response = Start::Charge.create(
         :amount => 400,
         :currency => "usd",
         :card => {
@@ -58,17 +58,17 @@ describe White::RequestError do
         },
         :description => "Charge for test@example.com"
       )
-    rescue White::RequestError => e
+    rescue Start::RequestError => e
       e.code.must_equal 'unprocessable_entity'
       e.http_status.must_equal 422
     end
   end
 
   it "must be thown with invalid_number" do
-    White.api_key = "test_sec_k_25dd497d7e657bb761ad6"
+    Start.api_key = "test_sec_k_25dd497d7e657bb761ad6"
 
     begin
-      response = White::Charge.create(
+      response = Start::Charge.create(
         :amount => 400,
         :currency => "usd",
         :card => {
@@ -79,17 +79,17 @@ describe White::RequestError do
         },
         :description => "Charge for test@example.com"
       )
-    rescue White::RequestError => e
+    rescue Start::RequestError => e
       e.code.must_equal 'unprocessable_entity'
       e.http_status.must_equal 422
     end
   end
 
   it "must be thown with invalid_expiry_month" do
-    White.api_key = "test_sec_k_25dd497d7e657bb761ad6"
+    Start.api_key = "test_sec_k_25dd497d7e657bb761ad6"
 
     begin
-      response = White::Charge.create(
+      response = Start::Charge.create(
         :amount => 400,
         :currency => "usd",
         :card => {
@@ -100,17 +100,17 @@ describe White::RequestError do
         },
         :description => "Charge for test@example.com"
       )
-    rescue White::RequestError => e
+    rescue Start::RequestError => e
       e.code.must_equal 'unprocessable_entity'
       e.http_status.must_equal 422
     end
   end
 
   it "must be thown with invalid_expiry_year" do
-    White.api_key = "test_sec_k_25dd497d7e657bb761ad6"
+    Start.api_key = "test_sec_k_25dd497d7e657bb761ad6"
 
     begin
-      response = White::Charge.create(
+      response = Start::Charge.create(
         :amount => 400,
         :currency => "usd",
         :card => {
@@ -121,7 +121,7 @@ describe White::RequestError do
         },
         :description => "Charge for test@example.com"
       )
-    rescue White::RequestError => e
+    rescue Start::RequestError => e
       e.code.must_equal 'unprocessable_entity'
       e.http_status.must_equal 422
     end
