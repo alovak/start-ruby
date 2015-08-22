@@ -9,7 +9,6 @@ require "start/errors/request_error"
 require "start/errors/processing_error"
 
 module Start
-
   include HTTParty
 
   base_uri 'https://api.start.payfort.com'
@@ -19,6 +18,4 @@ module Start
   def self.api_key=(value)
     default_options[:basic_auth] = {username: value, password: ''}
   end
-
-
 end
