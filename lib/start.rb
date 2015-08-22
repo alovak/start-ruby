@@ -1,5 +1,6 @@
 require "httparty"
 require "start/base_resource"
+require "start/version"
 require "start/customer"
 require "start/charge"
 require "start/errors/start_error"
@@ -14,6 +15,8 @@ module Start
   base_uri 'https://api.start.payfort.com'
 
   ssl_ca_file File.dirname(__FILE__) + '/data/ssl-bundle.crt'
+
+  headers 'User-Agent' => "Start/Ruby/#{Start::VERSION}"
 
   def self.api_key=(value)
     default_options[:basic_auth] = {username: value, password: ''}
