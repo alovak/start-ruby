@@ -1,10 +1,11 @@
 require_relative '../../spec_helper'
- 
-describe Start::Charge do
- 
-  it "must create a new charge" do
-    Start.api_key = "test_sec_k_25dd497d7e657bb761ad6"
 
+describe Start::Charge do
+  before do
+    Start.api_key = "test_sec_k_2b99b969196bece8fa7fd"
+  end
+
+  it "must create a new charge" do
     response = Start::Charge.create(
       :amount => 400,
       :currency => "usd",
@@ -19,12 +20,12 @@ describe Start::Charge do
       :description => "Charge for test@example.com"
     )
 
-    response['captured_amount'].must_equal 400
+    expect(response['captured_amount']).to eq(400)
   end
 
    it "must list created charges" do
     response = Start::Charge.all()
-    response.wont_be_empty
+
+    expect(response).to_not be_empty
    end
- 
 end
