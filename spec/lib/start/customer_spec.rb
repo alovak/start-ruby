@@ -1,11 +1,11 @@
-require_relative '../../spec_helper'
-# require_relative '../../../lib/white/customer'
- 
-describe Start::Customer do
- 
-  it "must create a new customer" do
-    Start.api_key = "test_sec_k_25dd497d7e657bb761ad6"
+require 'spec_helper'
 
+describe Start::Customer do
+  before do
+    Start.api_key = "test_sec_k_2b99b969196bece8fa7fd"
+  end
+
+  it "must create a new customer" do
     response = Start::Customer.create(
       :name => "Abdullah Ahmed",
       :email => "abdullah@msn.com",
@@ -18,12 +18,12 @@ describe Start::Customer do
       :description => "Signed up at the Trade Show in Dec 2014"
     )
 
-    response['name'].must_equal "Abdullah Ahmed"
+    expect(response['name']).to eq("Abdullah Ahmed")
   end
 
-   it "must list created customers" do
+  it "must list created customers" do
     response = Start::Customer.all()
-    response.wont_be_empty
-   end
- 
+
+    expect(response).to_not be_empty
+  end
 end

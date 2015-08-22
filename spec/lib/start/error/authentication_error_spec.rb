@@ -1,11 +1,10 @@
-require_relative '../../../spec_helper'
+require 'spec_helper'
 
 describe Start::AuthenticationError do
-  
   it "must be thown with an invalid key" do
     Start.api_key = "invalid"
 
-    lambda {
+    expect {
       response = Start::Charge.create(
         :amount => 400,
         :currency => "usd",
@@ -17,6 +16,6 @@ describe Start::AuthenticationError do
         },
         :description => "Charge for test@example.com"
       )
-    }.must_raise Start::AuthenticationError
+    }.to raise_error Start::AuthenticationError
   end
 end

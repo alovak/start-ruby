@@ -1,9 +1,8 @@
-require_relative '../../../spec_helper'
+require 'spec_helper'
 
 describe Start::BankingError do
- 
   it "must be thown with card_declined" do
-    Start.api_key = "test_sec_k_25dd497d7e657bb761ad6"
+    Start.api_key = "test_sec_k_2b99b969196bece8fa7fd"
 
     begin
       response = Start::Charge.create(
@@ -20,9 +19,8 @@ describe Start::BankingError do
         :description => "Charge for test@example.com"
       )
     rescue Start::BankingError => e
-      e.code.must_equal 'card_declined'
-      e.http_status.must_equal 402
+      expect(e.code).to eq('card_declined')
+      expect(e.http_status).to eq(402)
     end
   end
-  
 end
