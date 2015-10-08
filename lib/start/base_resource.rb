@@ -25,23 +25,13 @@ module Start
           return body
         end
 
-        # There was an error .. check the response
-        case body['error']['type']
-        when 'banking'
-          raise Start::BankingError.new(body['error']['message'], body['error']['code'], response.code)
+        exception_class = if ['banking', 'authentication', 'processing', 'request'].include?(body['error']['type'])
+                            Object.const_get "Start::#{body['error']['type'].capitalize}Error"
+                          else
+                            StartError
+                          end
 
-        when 'authentication'
-          raise Start::AuthenticationError.new(body['error']['message'], body['error']['code'], response.code)
-
-        when 'processing'
-          raise Start::ProcessingError.new(body['error']['message'], body['error']['code'], response.code)
-
-        when 'request'
-          raise Start::RequestError.new(body['error']['message'], body['error']['code'], response.code)
-        end
-
-        # Otherwise, raise a General error
-        raise Start::StartError.new(body['error']['message'], body['error']['code'], response.code)
+        raise exception_class.new(body['error']['message'], body['error']['code'], response.code, body['error']['extras'])
       end
     end
   end
