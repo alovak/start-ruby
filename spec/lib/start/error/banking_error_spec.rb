@@ -21,6 +21,7 @@ describe Start::BankingError do
     rescue Start::BankingError => e
       expect(e.code).to eq('card_declined')
       expect(e.http_status).to eq(402)
+      expect(e.extras).to include('charge')
     end
   end
 end

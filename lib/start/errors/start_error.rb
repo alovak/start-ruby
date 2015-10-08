@@ -1,13 +1,12 @@
 module Start
   class StartError < StandardError
-    attr_reader :message
-    attr_reader :code
-    attr_reader :http_status
+    attr_reader :message, :code, :http_status, :extras
 
-    def initialize(message=nil, code=nil, http_status=nil)
+    def initialize(message = nil, code = nil, http_status = nil, extras = {})
       @message = message
       @code = code
       @http_status = http_status
+      @extras = extras
     end
 
     def to_s
