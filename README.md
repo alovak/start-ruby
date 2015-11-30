@@ -51,7 +51,7 @@ Start::Charge.create(
   )
 ```
 
-This transaction should be successful since we used the `4242 4242 4242 4242` test credit card. For a complete list of test cards, and their expected output you can check out this link [here](https://docs.start.payfort.com/testing/).
+This transaction should be successful since we used the `4242 4242 4242 4242` test credit card. For a complete list of test cards, and their expected output you can check out this link [here](https://docs.start.payfort.com/guides/testing/).
 
 How can you tell that it was successful? Well, if no exception is raised then you're in the clear.
 
