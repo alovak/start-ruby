@@ -16,8 +16,8 @@ describe Start::Token do
     expect(response['id']).to start_with('tok_')
   end
 
-  context 'when name is passed is passed' do
-    it "must create a new token with card object has name" do
+  context 'when holder name is passed' do
+    it "must create a card with holder name" do
       response = Start::Token.create(
         :number => "4242424242424242",
         :exp_month => 11,
