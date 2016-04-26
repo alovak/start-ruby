@@ -8,7 +8,7 @@ module Start
       end
 
       def get(id)
-        handle_response Start.post("#{path}/#{id}")
+        handle_response Start.get("#{path}/#{id}")
       end
 
       def all
